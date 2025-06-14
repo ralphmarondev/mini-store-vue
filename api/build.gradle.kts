@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.5.0"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.9.25"
 }
 
 group = "com.ralphmarondev"
@@ -20,7 +21,7 @@ repositories {
 
 dependencies {
     // Web (for building REST APIs)
-    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     // JPA (Java Persistence API) + PostgreSQL
@@ -49,6 +50,10 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
     }
+}
+
+noArg {
+    annotation("jakarta.persistence.Entity")
 }
 
 tasks.withType<Test> {
